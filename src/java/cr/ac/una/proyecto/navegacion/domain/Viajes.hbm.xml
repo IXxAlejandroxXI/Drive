@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/10/2017 07:57:13 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cr.ac.una.proyecto.navegacion.domain.Viajes" table="viajes" catalog="bdproyecto" optimistic-lock="version">
+        <id name="numero" type="java.lang.Integer">
+            <column name="numero" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="chofer" class="cr.ac.una.proyecto.navegacion.domain.Chofer" fetch="select">
+            <column name="cedula" length="9" not-null="true" />
+        </many-to-one>
+        <many-to-one name="clientes" class="cr.ac.una.proyecto.navegacion.domain.Clientes" fetch="select">
+            <column name="usuario" length="15" not-null="true" />
+        </many-to-one>
+        <many-to-one name="vehiculos" class="cr.ac.una.proyecto.navegacion.domain.Vehiculos" fetch="select">
+            <column name="placa" length="6" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" not-null="true" />
+        </property>
+        <property name="puntoInicioX" type="float">
+            <column name="puntoInicioX" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="puntoInicioY" type="float">
+            <column name="puntoInicioY" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="duracion" type="int">
+            <column name="duracion" not-null="true" />
+        </property>
+        <property name="monto" type="double">
+            <column name="monto" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="calificacion" type="int">
+            <column name="calificacion" not-null="true" />
+        </property>
+        <property name="ultimoUsuario" type="string">
+            <column name="ultimoUsuario" length="15" not-null="true" />
+        </property>
+        <property name="fechaMod" type="date">
+            <column name="fechaMod" length="10" not-null="true" />
+        </property>
+        <property name="puntoFinalX" type="float">
+            <column name="puntoFinalX" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="puntoFinalY" type="float">
+            <column name="puntoFinalY" precision="12" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

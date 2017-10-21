@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/10/2017 07:57:13 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cr.ac.una.proyecto.navegacion.domain.Vehiculos" table="vehiculos" catalog="bdproyecto" optimistic-lock="version">
+        <id name="placa" type="string">
+            <column name="placa" length="6" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="chofer" class="cr.ac.una.proyecto.navegacion.domain.Chofer" fetch="select">
+            <column name="cedula" length="9" not-null="true" />
+        </many-to-one>
+        <property name="ano" type="int">
+            <column name="ano" not-null="true" />
+        </property>
+        <property name="modelo" type="string">
+            <column name="modelo" length="15" not-null="true" />
+        </property>
+        <property name="color" type="string">
+            <column name="color" length="10" not-null="true" />
+        </property>
+        <property name="puntuacion" type="float">
+            <column name="puntuacion" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="10" not-null="true" />
+        </property>
+        <property name="ubicacionActualX" type="float">
+            <column name="ubicacionActualX" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="ubicacionActualY" type="float">
+            <column name="ubicacionActualY" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" not-null="true" />
+        </property>
+        <property name="ultimoUsuario" type="string">
+            <column name="ultimoUsuario" length="15" not-null="true" />
+        </property>
+        <set name="viajeses" table="viajes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="placa" length="6" not-null="true" />
+            </key>
+            <one-to-many class="cr.ac.una.proyecto.navegacion.domain.Viajes" />
+        </set>
+    </class>
+</hibernate-mapping>
