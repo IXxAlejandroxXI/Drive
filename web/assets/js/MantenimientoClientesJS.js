@@ -77,16 +77,16 @@ function dibujarTabla(dataJson) {
     var row = $("<tr />");
     head.append(row);
     $("#tablaClientes").append(head); 
-    row.append($("<th><b>USUARIO</b></th>"));
-    row.append($("<th><b>CONTRASEÑA</b></th>"));
-    row.append($("<th><b>NOMBRE</b></th>"));
-    row.append($("<th><b>APELLIDOS</b></th>"));
-    row.append($("<th><b>CORREO ELECTRONICO</b></th>"));
-    row.append($("<th><b>FEC. NAC.</b></th>"));
-    row.append($("<th><b>DIRECCION X</th>"));
-    row.append($("<th><b>DIRECCION Y</b></th>"));
-    row.append($("<th><b>TEL TRABAJO</b></th>"));
-    row.append($("<th><b>ULT. USUARIO</b></th>"));
+    row.append($("<th><p>USUARIO</p></th>"));
+    row.append($("<th><p>CONTRASEÑA</p></th>"));
+    row.append($("<th><p>NOMBRE</p></th>"));
+    row.append($("<th><p>APELLIDOS</p></th>"));
+    row.append($("<th><p>CORREO ELECTRONICO</p></th>"));
+    row.append($("<th><p>FEC. NAC.</p></th>"));
+   // row.append($("<th><p>DIRECCION X</th>"));
+    //row.append($("<th><p>DIRECCION Y</b></th>"));
+    row.append($("<th><p>ULT. USUARIO</p></th>"));
+    row.append($("<th><p>TEL TRABAJO</p></th>"));
     
     //carga la tabla con el json devuelto
     for (var i = 0; i < dataJson.length; i++) {
@@ -106,17 +106,17 @@ function dibujarFila(rowData) {
     row.append($("<td>" + rowData.apellidos + "</td>"));
     row.append($("<td>" + rowData.correo + "</td>"));
     row.append($("<td>" + rowData.fechaNacimiento + "</td>"));
-    row.append($('<td><button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="consultarClienteByID(\'' + user + '\');">'+
+    
+    //row.append($("<td>" + rowData.direccionX + "</td>"));
+    //row.append($("<td>" + rowData.direccionY + "</td>"));
+    //row.append($("<td>" + rowData.nombre + "</td>"));
+    row.append($("<td>" + rowData.telefonoTrabajo + "</td>"));
+    row.append($("<td>" + rowData.ultimoUsuario + "</td>"));row.append($('<td><button type="button" id="editarbtn" class="btn btn-default btn-xs" aria-label="Left Align" onclick="consultarClienteByID(\'' + user + '\');">'+
                         '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>'+
                     '</button>'+
-                    '<button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="eliminarCliente(\'' + user + '\');">'+
+                    '<button type="button" id="elibtn" class="btn btn-default btn-xs" aria-label="Left Align" onclick="eliminarCliente(\'' + user + '\');">'+
                         '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'+
                     '</button></td>'));
-    row.append($("<td>" + rowData.direccionX + "</td>"));
-    row.append($("<td>" + rowData.direccionY + "</td>"));
-    row.append($("<td>" + rowData.nombre + "</td>"));
-    row.append($("<td>" + rowData.telefonoTrabajo + "</td>"));
-    row.append($("<td>" + rowData.ultimoUsuario + "</td>"));
 }
 
 //******************************************************************************
