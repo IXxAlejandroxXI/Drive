@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<a href="registro.jsp"></a>
 <!DOCTYPE html>
 <html>
 	<head>

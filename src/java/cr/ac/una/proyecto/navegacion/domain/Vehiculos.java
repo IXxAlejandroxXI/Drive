@@ -13,7 +13,7 @@ public class Vehiculos  implements java.io.Serializable {
 
 
      private String placa;
-     private Chofer chofer;
+     private String cedula;
      private int ano;
      private String modelo;
      private String color;
@@ -29,9 +29,9 @@ public class Vehiculos  implements java.io.Serializable {
     }
 
 	
-    public Vehiculos(String placa, Chofer chofer, int ano, String modelo, String color, float puntuacion, String estado, float ubicacionActualX, float ubicacionActualY, Date fecha, String ultimoUsuario) {
+    public Vehiculos(String placa, String cedula, int ano, String modelo, String color, float puntuacion, String estado, float ubicacionActualX, float ubicacionActualY, Date fecha, String ultimoUsuario) {
         this.placa = placa;
-        this.chofer = chofer;
+        this.cedula = cedula;
         this.ano = ano;
         this.modelo = modelo;
         this.color = color;
@@ -42,9 +42,9 @@ public class Vehiculos  implements java.io.Serializable {
         this.fecha = fecha;
         this.ultimoUsuario = ultimoUsuario;
     }
-    public Vehiculos(String placa, Chofer chofer, int ano, String modelo, String color, float puntuacion, String estado, float ubicacionActualX, float ubicacionActualY, Date fecha, String ultimoUsuario, Set<Viajes> viajeses) {
+    public Vehiculos(String placa, String cedula, int ano, String modelo, String color, float puntuacion, String estado, float ubicacionActualX, float ubicacionActualY, Date fecha, String ultimoUsuario, Set<Viajes> viajeses) {
        this.placa = placa;
-       this.chofer = chofer;
+       this.cedula = cedula;
        this.ano = ano;
        this.modelo = modelo;
        this.color = color;
@@ -64,12 +64,12 @@ public class Vehiculos  implements java.io.Serializable {
     public void setPlaca(String placa) {
         this.placa = placa;
     }
-    public Chofer getChofer() {
-        return this.chofer;
+    public String getCedula() {
+        return this.cedula;
     }
     
-    public void setChofer(Chofer chofer) {
-        this.chofer = chofer;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
     public int getAno() {
         return this.ano;
@@ -140,6 +140,11 @@ public class Vehiculos  implements java.io.Serializable {
     
     public void setViajeses(Set<Viajes> viajeses) {
         this.viajeses = viajeses;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehiculos{" + "placa=" + placa + ", cedula=" + cedula + ", ano=" + ano + ", modelo=" + modelo + ", color=" + color + ", puntuacion=" + puntuacion + ", estado=" + estado + ", ubicacionActualX=" + ubicacionActualX + ", ubicacionActualY=" + ubicacionActualY + ", fecha=" + fecha + ", ultimoUsuario=" + ultimoUsuario + '}';
     }
 
 

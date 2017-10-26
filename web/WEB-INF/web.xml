@@ -12,6 +12,14 @@
         <servlet-name>ClientesServlet</servlet-name>
         <url-pattern>/ClientesServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>VehiculosServlet</servlet-name>
+        <servlet-class>cr.ac.una.proyecto.navegacion.controller.VehiculosServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VehiculosServlet</servlet-name>
+        <url-pattern>/VehiculosServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

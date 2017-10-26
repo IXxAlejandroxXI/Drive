@@ -8,9 +8,9 @@
             <column name="placa" length="6" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="chofer" class="cr.ac.una.proyecto.navegacion.domain.Chofer" fetch="select">
+        <property name="cedula" type="string">
             <column name="cedula" length="9" not-null="true" />
-        </many-to-one>
+        </property>
         <property name="ano" type="int">
             <column name="ano" not-null="true" />
         </property>
@@ -38,7 +38,7 @@
         <property name="ultimoUsuario" type="string">
             <column name="ultimoUsuario" length="15" not-null="true" />
         </property>
-        <set name="viajeses" table="viajes" inverse="true" lazy="true" fetch="select">
+        <set name="viajeses" table="viajes" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="placa" length="6" not-null="true" />
             </key>
