@@ -5,6 +5,7 @@
  */
 package cr.ac.una.proyecto.navegacion.bl;
 
+import cr.ac.una.proyecto.navegacion.domain.Chofer;
 import cr.ac.una.proyecto.navegacion.domain.Vehiculos;
 import java.util.List;
 
@@ -17,10 +18,16 @@ public class VehiculosBL extends BaseBL implements IBaseBL<Vehiculos, String>{
     public VehiculosBL() {
         super();
     }
-
+    
     @Override
     public void save(Vehiculos o) {
-        this.getDao(o.getClass().getName()).save(o);
+        List<Chofer> choferes = this.getDao(Chofer.class.getName()).findAll();
+        for (int i = 0; i < choferes.size(); i++) {
+            if (choferes.get(i).getCedula().equals(o.getCedula())) {
+                this.getDao(o.getClass().getName()).save(o);
+                break;
+            }
+        }
     }
 
     @Override
