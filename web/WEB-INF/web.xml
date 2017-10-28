@@ -20,6 +20,30 @@
         <servlet-name>VehiculosServlet</servlet-name>
         <url-pattern>/VehiculosServlet</url-pattern>
     </servlet-mapping>
+     <servlet>
+        <servlet-name>UsuariosServlet</servlet-name>
+        <servlet-class>cr.ac.una.proyecto.navegacion.controller.UsuariosServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UsuariosServlet</servlet-name>
+        <url-pattern>/UsuariosServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>cr.ac.una.proyecto.navegacion.controller.Logout</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+     <servlet>
+        <servlet-name>ChoferesServlet</servlet-name>
+        <servlet-class>cr.ac.una.proyecto.navegacion.controller.ChoferesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChoferesServlet</servlet-name>
+        <url-pattern>/ChoferesServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

@@ -11,6 +11,7 @@
         <title>Vehiculos - Sistema para la administración de vehiculos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- ********************************************************** -->
+        <link href="assets/css/main.css" rel="stylesheet" type="text/css"/>
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script src="assets/js/jquery-3.2.1.js" type="text/javascript"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

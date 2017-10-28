@@ -15,6 +15,9 @@
                 <link href="assets/css/main.css" rel="stylesheet" type="text/css"/>
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+                <script src="assets/js/LoginJS.js" type="text/javascript"></script>
+                
 	</head>
 	<body>
 
@@ -26,20 +29,41 @@
                                
 
                         </header>
-
+                 <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body" id="myModalMessage">
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
                         <!-- Signup Form -->
-                        <form id="signup-form">
+                        <form id="signup-form" role="form" onsubmit="return false;" >
+                            <div class="form-group" id="groupUsario">
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Usuario o cedula" />
+                            </div>
+                            <div class="form-group" id="groupPassword"> 
+                                <input type="password" name="contrasena" class="form-control" id="contra" placeholder="*****"/>
+                            </div>
                             <div>
-                            <input type="email" name="email" id="email" placeholder="Correo electronico" />
+                                <input type="hidden" value="agregarPersona" id="personasAction"/>
+                                <input type="submit" class="btn btn-primary"  id="ingreso"  /></a>
                             </div>
-                            <div> <input type="password" name="contrasena" id="contra" placeholder="*****"/>
-                            </div>
-                            <div>
-                                <a href="MantenimientoClientes.jsp"><input type="submit"  value="Ingresar" id="ingreso" onclick="location.href='MantenimientoClientes.jsp';" /></a>
-                            
-                            
-                            </div>
+                            <div class="form-group height25" >
+                        <div class="alert alert-success hiddenDiv" id="mesajeResult">
+                            <strong id="mesajeResultNeg"></strong> 
+                            <span id="mesajeResultText"></span>
+                        </div>
+                    </div>
                         </form>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
                         
                         <form id="signup-form" method="post" action="#">
                             

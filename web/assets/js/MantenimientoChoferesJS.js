@@ -13,7 +13,24 @@ $(function () {
         minView: 2,
         forceParse: 0
     });
-
+     $('#fechavencimiento').datetimepicker({
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    $('#fecha').datetimepicker({
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
     //agrega los eventos las capas necesarias
     $("#enviar").click(function () {
         enviar();
@@ -37,7 +54,7 @@ $(function () {
 //******************************************************************************
 
 $(document).ready(function () {
-    consultarClientes();
+    consultarChoferes();
 });
 
 //******************************************************************************
@@ -46,16 +63,16 @@ $(document).ready(function () {
 //******************************************************************************
 //******************************************************************************
 
-function consultarClientes() {
+function consultarChoferes() {
     mostrarModal("myModal", "Espere por favor..", "Consultando la información de clientes en la base de datos");
     //Se envia la información por ajax
     $.ajax({
-        url: 'ClientesServlet',
+        url: 'ChoferesServlet',
         data: {
-            accion: "consultarClientes"
+            accion: "consultarChoferes"
         },
         error: function () { //si existe un error en la respuesta del ajax
-            alert("Se presento un error a la hora de cargar la información de los clientes en la base de datos");
+            alert("Se presento un error a la hora de cargar la información de los choferes en la base de datos");
         },
         success: function (data) { //si todo esta correcto en la respuesta del ajax, la respuesta queda en el data
             dibujarTabla(data);
@@ -70,23 +87,21 @@ function consultarClientes() {
 
 function dibujarTabla(dataJson) {
     //limpia la información que tiene la tabla
-    $("#tablaClientes").html(""); 
+    $("#tablaChoferes").html(""); 
     
     //muestra el enzabezado de la tabla
     var head = $("<thead />");
     var row = $("<tr />");
     head.append(row);
-    $("#tablaClientes").append(head); 
-    row.append($("<th><p>USUARIO</p></th>"));
-    row.append($("<th><p>CONTRASEÑA</p></th>"));
-    row.append($("<th><p>NOMBRE</p></th>"));
-    row.append($("<th><p>APELLIDOS</p></th>"));
-    row.append($("<th><p>CORREO ELECTRONICO</p></th>"));
-    row.append($("<th><p>FEC. NAC.</p></th>"));
-   // row.append($("<th><p>DIRECCION X</th>"));
-    //row.append($("<th><p>DIRECCION Y</b></th>"));
-    row.append($("<th><p>TEL TRABAJO</p></th>"));
-    row.append($("<th><p>ULT. USUARIO</p></th>"));
+    $("#tablaChoferes").append(head); 
+    row.append($("<th><b>CEDULA</b></th>"));
+    row.append($("<th><b>TIPO DE LICENCIA</b></th>"));
+    row.append($("<th><b>FECHA DE NACIMIENTO</b></th>"));
+    row.append($("<th><b>FECHA VENCIMIENTO LICENCIA</b></th>"));
+    row.append($("<th><b>CHOFER ACTUAL</b></th>"));
+    row.append($("<th><b>ULTIMO USUARIO</th>"));
+    row.append($("<th><b>FECHA</b></th>"));
+    row.append($("<th><b>ADMINISTRADOR</b></th>"));
     
     //carga la tabla con el json devuelto
     for (var i = 0; i < dataJson.length; i++) {
@@ -97,26 +112,24 @@ function dibujarTabla(dataJson) {
 function dibujarFila(rowData) {
     //Cuando dibuja la tabla en cada boton se le agrega la funcionalidad de cargar o eliminar la informacion
     //de una persona
-    var user = rowData.usuario;
-    var row = $("<tr />");
-    $("#tablaClientes").append(row); 
-    row.append($("<td>" + rowData.usuario + "</td>"));
-    row.append($("<td>" + rowData.contrasena + "</td>"));
-    row.append($("<td>" + rowData.nombre + "</td>"));
-    row.append($("<td>" + rowData.apellidos + "</td>"));
-    row.append($("<td>" + rowData.correo + "</td>"));
-    row.append($("<td>" + rowData.fechaNacimiento + "</td>"));
     
-    //row.append($("<td>" + rowData.direccionX + "</td>"));
-    //row.append($("<td>" + rowData.direccionY + "</td>"));
-    //row.append($("<td>" + rowData.nombre + "</td>"));
-    row.append($("<td>" + rowData.telefonoTrabajo + "</td>"));
-    row.append($("<td>" + rowData.ultimoUsuario + "</td>"));row.append($('<td><button type="button" id="editarbtn" class="btn btn-default btn-xs" aria-label="Left Align" onclick="consultarClienteByID(\'' + user + '\');">'+
+    var row = $("<tr />");
+    $("#tablaChoferes").append(row); 
+    row.append($("<td>" + rowData.cedula + "</td>"));
+    row.append($("<td>" + rowData.tipoLicencia + "</td>"));
+    row.append($("<td>" + rowData.fechaNacimiento + "</td>"));
+    row.append($("<td>" + rowData.fechaVencimientoLicencia + "</td>"));
+    row.append($("<td>" + rowData.choferActual + "</td>"));
+    row.append($("<td>" + rowData.ultimoUsuario + "</td>"));
+    row.append($("<td>" + rowData.fecha + "</td>"));
+    row.append($("<td>" + rowData.administrador + "</td>"));
+    row.append($('<td><button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="consultarChoferByID(\'' + rowData.cedula + '\');">'+
                         '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>'+
                     '</button>'+
-                    '<button type="button" id="elibtn" class="btn btn-default btn-xs" aria-label="Left Align" onclick="eliminarCliente(\'' + user + '\');">'+
+                    '<button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="eliminarChofer(\'' + rowData.cedula + '\');">'+
                         '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'+
                     '</button></td>'));
+    
 }
 
 //******************************************************************************
@@ -128,22 +141,19 @@ function dibujarFila(rowData) {
 function enviar() {
     if (validar()) {
         //Se envia la información por ajax
-        console.log($("#usuario").val());
+        //console.log($("#cedula").val());
         $.ajax({
-            url: 'ClientesServlet',
+            url: 'ChoferesServlet',
             data: {
-                accion: $("#clientesAction").val(),
-                usuario: $("#usuario").val(),
-                contrasena: $("#contrasena").val(),
-                nombre: $("#nombre").val(),
-                apellidos: $("#apellidos").val(),
-                correo: $("#correo").val(),
-                fechaNacimiento: $("#dpFechaNacimiento").data('date'),
-                direccionx: $("#direccionx").val(),
-                direcciony: $("#direcciony").val(),
-                telefono: $("#telefono").val(),
-                ultimousuario: $("#ultimousuario").val(),
-                fecha: new Date()
+                accion: $("#choferAction").val(),
+                cedula: $("#cedula").val(),
+                tipoLicencia: $("#tipoLicencia").val(),
+                fechaNacimiento: $("#fechanacimientotext").data('date'),
+                fechaVencimientoLicencia: $("#fechavencimientotext").data('date'),
+                choferActual: $("#SeleccionChoferActual").val(),
+                ultimoUsuario: $("#ultimousuario").val(),
+                fecha: $("#fechatext").data('date'),
+                administrador: $("#SeleccionAdministrador").val()
             },
             error: function () { //si existe un error en la respuesta del ajax
                 mostrarMensaje("alert alert-danger", "Se genero un error, contacte al administrador (Error del ajax)", "Error!");
@@ -154,7 +164,7 @@ function enviar() {
                 if (tipoRespuesta === "C~") {
                     mostrarMensaje("alert alert-success", respuestaTxt, "Correcto!");
                     $("#myModalFormulario").modal("hide");
-                    consultarClientes();
+                    consultarChoferes();
                 } else {
                     if (tipoRespuesta === "E~") {
                         mostrarMensaje("alert alert-danger", respuestaTxt, "Error!");
@@ -176,54 +186,49 @@ function validar() {
 
     //Elimina estilo de error en los css
     //notese que es sobre el grupo que contienen el input
-    $("#groupUsuario").removeClass("has-error");
-    $("#groupContrasena").removeClass("has-error");
-    $("#groupNombre").removeClass("has-error");
-    $("#groupApellidos").removeClass("has-error");
-    $("#groupCorreo").removeClass("has-error");
-    $("#groupDireccionX").removeClass("has-error");
-    $("#groupDireccionY").removeClass("has-error");
-    $("#groupTelefonoTrabajo").removeClass("has-error");
+    $("#groupCedula").removeClass("has-error");
+    $("#groupTipoLicencia").removeClass("has-error");
+    $("#groupFechaNacimiento").removeClass("has-error");
+    $("#groupFechaVencimientoLicencia").removeClass("has-error");
+    $("#groupChoferActual").removeClass("has-error");
     $("#groupUltimoUsuario").removeClass("has-error");
+    $("#groupFecha").removeClass("has-error");
+    $("#groupAdministrador").removeClass("has-error");
+
     //valida cada uno de los campos del formulario
     //Nota: Solo si fueron digitados
-    if ($("#usuario").val() === "") {
-        $("#groupUsuario").addClass("has-error");
+    if ($("#cedula").val() === "") {
+        $("#groupCedula").addClass("has-error");
         validacion = false;
     }
-    if ($("#contrasena").val() === "") {
-        $("#groupContrasena").addClass("has-error");
+    if ($("#tipoLicencia").val() === "") {
+        $("#groupTipoLicencia").addClass("has-error");
         validacion = false;
     }
-    if ($("#nombre").val() === "") {
-        $("#groupNombre").addClass("has-error");
+    if ($("#fechaNacimiento").data('date') === "") {
+        $("#groupFechaNacimiento").addClass("has-error");
         validacion = false;
     }
-    if ($("#apellidos").val() === "") {
-        $("#groupApellidos").addClass("has-error");
+    if ($("#fechaVencimientoLicencia").date ('date') === "") {
+        $("#groupFechaVencimientoLicencia").addClass("has-error");
         validacion = false;
     }
-    if ($("#correo").data('date') === "") {
-        $("#groupCorreo").addClass("has-error");
+    if ($("#choferActual").val() === "") {
+        $("#groupChoferActual").addClass("has-error");
         validacion = false;
     }
-    if ($("#direccionx").val() === "") {
-        $("#groupDireccionX").addClass("has-error");
-        validacion = false;
-    }
-    if ($("#direcciony").data('date') === "") {
-        $("#groupDireccionY").addClass("has-error");
-        validacion = false;
-    }
-    if ($("#telefono").val() === "") {
-        $("#groupTelefonoTrabajo").addClass("has-error");
-        validacion = false;
-    }
-    if ($("#ultimousuario").data('date') === "") {
+    if ($("#ultimoUsuario").val() === "") {
         $("#groupUltimoUsuario").addClass("has-error");
         validacion = false;
     }
-
+    if ($("#fecha").data('date') === "") {
+        $("#groupFecha").addClass("has-error");
+        validacion = false;
+    }
+    if ($("#administrador").val() === "") {
+        $("#groupAdministrador").addClass("has-error");
+        validacion = false;
+    }
     return validacion;
 }
 
@@ -233,14 +238,14 @@ function validar() {
 //******************************************************************************
 //******************************************************************************
 
-function eliminarCliente(idCliente) {
-    mostrarModal("myModal", "Espere por favor..", "Se esta eliminando al cliente seleccionado");
+function eliminarChofer(cedulaChofer) {
+    mostrarModal("myModal", "Espere por favor..", "Se esta eliminando al chofer seleccionado");
     //Se envia la información por ajax
     $.ajax({
-        url: 'ClientesServlet',
+        url: 'ChoferesServlet',
         data: {
-            accion: "eliminarClientes",
-            idCliente: idCliente
+            accion: "eliminarChoferes",
+            cedula: cedulaChofer
         },
         error: function () { //si existe un error en la respuesta del ajax
             cambiarMensajeModal("myModal","Resultado acción","Se presento un error, contactar al administador");
@@ -252,7 +257,7 @@ function eliminarCliente(idCliente) {
             if (tipoRespuesta === "E~") {
                 cambiarMensajeModal("myModal","Resultado acción",respuestaTxt);
             }else{
-                setTimeout(consultarClientes, 3000);// hace una pausa y consulta la información de la base de datos
+                setTimeout(consultarChoferes, 3000);// hace una pausa y consulta la información de la base de datos
             }
         },
         type: 'POST',
@@ -266,14 +271,14 @@ function eliminarCliente(idCliente) {
 //******************************************************************************
 //******************************************************************************
 
-function consultarClienteByID(idCliente) {
+function consultarChoferByID(cedula) {
     mostrarModal("myModal", "Espere por favor..", "Consultando la persona seleccionada");
     //Se envia la información por ajax
     $.ajax({
-        url: 'ClientesServlet',
+        url: 'ChoferesServlet',
         data: {
-            accion: "consultarClientesByID",
-            idCliente: idCliente
+            accion: "consultarCedulaChofer",
+            cedula: cedula
         },
         error: function () { //si existe un error en la respuesta del ajax
             cambiarMensajeModal("myModal","Resultado acción","Se presento un error, contactar al administador");
@@ -289,31 +294,38 @@ function consultarClienteByID(idCliente) {
             //carga información de la persona en el formulario
             //************************************************************************
             //se indicar que la cédula es solo readOnly
-            $("#usuario").attr('readonly', 'readonly');
+            $("#cedula").attr('readonly', 'readonly');
             
             //se modificar el hidden que indicar el tipo de accion que se esta realizando
-            $("#clientesAction").val("modificarCliente"); 
+            $("#choferesAction").val("modificarChofer"); 
             
             //se carga la información en el formulario
-            $("#usuario").val(data.usuario);
-            $("#contrasena").val(data.contrasena);
-            $("#nombre").val(data.nombre);
-            $("#apellidos").val(data.apellidos);
-            $("#correo").val(data.correo);
+            $("#cedula").val(data.cedula);
+            $("#tipoLicencia").val(data.tipoLicencia);
+            
+            var fecha = new Date(data.fechaNacimiento);
+            var fechatxt = fecha.getDate() +"/" +fecha.getMonth()+1 + "/" + fecha.getFullYear();
+            $("#FechaNacimiento").data({date: fechatxt});
+            $("#Fechanacimientotext").val(fechatxt);
+            
+            var fecha1 = new Date(data.fechaVencimiento);
+            var fechatxt1 = fecha1.getDate() +"/" +fecha1.getMonth()+1 + "/" + fecha1.getFullYear();
+            $("#FechaVencimiento").data({date: fechatxt1});
+            $("#Fechavencimientotext").val(fechatxt1);
+            
+            $("#choferActual").val(data.choferActual);
+            $("#ultimoUsuario").val(data.ultimoUsuario);
+            
+            var fecha2 = new Date(data.fecha);
+            var fechatxt2 = fecha2.getDate() +"/" +fecha2.getMonth()+1 + "/" + fecha2.getFullYear();
+            $("#Fecha").data({date: fechatxt2});
+            $("#Fechatext").val(fechatxt2);
+            
+            $("#administrador").val(data.administrador);
             
             //carga de fecha
-            var fecha = new Date(data.fechaNacimiento);
-            
-            
-            var fechatxt = fecha.getDate() +"/" +fecha.getMonth()+1 + "/" + fecha.getFullYear();
-            $("#dpFechaNacimiento").data({date: fechatxt});
-            $("#dpFechaNacimientoText").val(fechatxt);
             
             //$("#dpFechaNacimiento")$('.datepicker').datepicker('update', new Date(2011, 2, 5));
-            $("#direccionx").val(data.direccionX);
-            $("#direcciony").val(data.direccionY);
-            $("#telefono").val(data.telefonoTrabajo);
-            $("#ultimousuario").val(data.ultimoUsuario);
         },
         type: 'POST',
         dataType: "json"
@@ -343,23 +355,26 @@ function mostrarMensaje(classCss, msg, neg) {
 
 function limpiarForm() {
     //setea el focus del formulario
-    $('#usuario').focus();
-    $("#usuario").removeAttr("readonly"); //elimina el atributo de solo lectura
+    $('#cedula').focus();
+    $("#cedula").removeAttr("readonly"); //elimina el atributo de solo lectura
     
     //se cambia la accion por agregarPersona
-    $("#clientesAction").val("agregarCliente"); 
+    $("#choferesAction").val("agregarChofer"); 
 
     //esconde el div del mensaje
     mostrarMensaje("hiddenDiv", "", "");
 
     //Resetear el formulario
-    $('#formClientes').trigger("reset");
+    $('#formChoferes').trigger("reset");
 }
 $(function() {
-    $("tablaClientes").pagination({
+    $("tablaChoferes").pagination({
         items: 100,
         itemsOnPage: 10,
         cssStyle: 'light-theme'
     });
 });
+
+
+
 

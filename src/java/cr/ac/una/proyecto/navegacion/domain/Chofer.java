@@ -4,6 +4,8 @@ package cr.ac.una.proyecto.navegacion.domain;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,8 +22,8 @@ public class Chofer  implements java.io.Serializable {
      private String ultimoUsuario;
      private Date fecha;
      private boolean administrador;
-     private Set<Vehiculos> vehiculoses = new HashSet<Vehiculos>(0);
-     private Set<Viajes> viajeses = new HashSet<Viajes>(0);
+     private List<Vehiculos> vehiculoses = new LinkedList();
+     private List<Viajes> viajeses = new LinkedList();
 
     public Chofer() {
     }
@@ -37,7 +39,7 @@ public class Chofer  implements java.io.Serializable {
         this.fecha = fecha;
         this.administrador = administrador;
     }
-    public Chofer(String cedula, String tipoLicencia, Date fechaNacimiento, Date fechaVencimientoLicencia, boolean choferActual, String ultimoUsuario, Date fecha, boolean administrador, Set<Vehiculos> vehiculoses, Set<Viajes> viajeses) {
+    public Chofer(String cedula, String tipoLicencia, Date fechaNacimiento, Date fechaVencimientoLicencia, boolean choferActual, String ultimoUsuario, Date fecha, boolean administrador, List<Vehiculos> vehiculoses, List<Viajes> viajeses) {
        this.cedula = cedula;
        this.tipoLicencia = tipoLicencia;
        this.fechaNacimiento = fechaNacimiento;
@@ -106,18 +108,18 @@ public class Chofer  implements java.io.Serializable {
     public void setAdministrador(boolean administrador) {
         this.administrador = administrador;
     }
-    public Set<Vehiculos> getVehiculoses() {
+    public List<Vehiculos> getVehiculoses() {
         return this.vehiculoses;
     }
     
-    public void setVehiculoses(Set<Vehiculos> vehiculoses) {
+    public void setVehiculoses(List<Vehiculos> vehiculoses) {
         this.vehiculoses = vehiculoses;
     }
-    public Set<Viajes> getViajeses() {
+    public List<Viajes> getViajeses() {
         return this.viajeses;
     }
     
-    public void setViajeses(Set<Viajes> viajeses) {
+    public void setViajeses(List<Viajes> viajeses) {
         this.viajeses = viajeses;
     }
 

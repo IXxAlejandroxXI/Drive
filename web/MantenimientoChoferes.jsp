@@ -1,8 +1,9 @@
 <%-- 
-    Document   : MantenimientoClientes
-    Created on : 14/10/2017, 03:05:21 PM
-    Author     : aleca
+    Document   : MantenimientoChoferes
+    Created on : 24/10/2017, 01:33:57 PM
+    Author     : Laura
 --%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,14 +24,14 @@
         <link href="assets/css/datetimepicker.min.css" rel="stylesheet" type="text/css"/>
         <script src="assets/js/datetimepicker.js" type="text/javascript"></script>
         <script src="assets/js/utils.js" type="text/javascript"></script>
-        <script src="assets/js/MantenimientoClientesJS.js" type="text/javascript"></script>
+        <script src="assets/js/MantenimientoChoferesJS.js" type="text/javascript"></script>
     </head>
     <body>
 
         <!-- Header -->
         <header id="header">
             <h1>¡Drive!</h1>
-            <h1>Administrador <small>Mantenimiento de Cliente</small></h1>
+            <h1>Administrador <small>Mantenimiento de Choferes</small></h1>
         </header>
 
         <!-- Signup Form -->
@@ -70,57 +71,66 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" id="myModalTitle">Insertar / Modificar Clientes
+                        <h4 class="modal-title" id="myModalTitle">Insertar / Modificar Choferes
                     </div>
                     <div class="modal-body" id="myModalMessage">
-                        <form role="form" onsubmit="return false;" id="formClientes">
-                            <div class="form-group" id="groupUsuario">
-                                <p for="usuario">Usuario:</p>
-                                <input type="text" class="form-control" id="usuario" autofocus="true" placeholder="usuario">
+                        <form role="form" onsubmit="return false;" id="formChoferes">
+                            <div class="form-group" id="groupCedula">
+                                <p for="cedula">Cedula:</p>
+                                <input type="text" class="form-control" id="cedula" autofocus="true" placeholder="cedula">
                             </div>
-                            <div class="form-group" id="groupContrasena">
-                                <p for="contrasena">Contraseña:</p>
-                                <input type="password" class="form-control" id="contrasena" autofocus="true" placeholder="*******">
-                            </div>
-                            <div class="form-group" id="groupNombre">
-                                <p for="nombre">Nombre:</p>
-                                <input type="text" class="form-control" id="nombre" autofocus="true" placeholder="nombre">
-                            </div>
-                            <div class="form-group" id="groupApellidos">
-                                <p for="apellidos">Apellidos:</p>
-                                <input type="text" class="form-control" id="apellidos" autofocus="true" placeholder="apellido         apellido">
-                            </div>
-                            <div class="form-group" id="groupCorreo">
-                                <p for="correo">Correo:</p>
-                                <input type="email" class="form-control" id="correo" autofocus="true" placeholder="usuario">
+                            <div class="form-group" id="groupTipoLicencia">
+                                <p for="tipolicencia">Tipo de Licencia:</p>
+                                <input type="text" class="form-control" id="tipoLicencia" autofocus="true" placeholder="tipoLicencia">
                             </div>
                             <div class="form-group" id="groupFechaNacimiento">
                                 <p for="fechanacimiento">Fecha Nacimiento:</p>
                                 <div id="fechanacimiento" class="input-group date form_date" data-date="" data-date-format="dd/mm/yyyy" data-link-field="dtp_input2" data-link-format="dd/mm/yyyy">
-                                    <input class="form-control" type="text" value="" readonly placeholder="dd/mm/aaaa" id="fechanacimientotext">
+                                    <input class="form-control" type="text" value=""  placeholder="dd/mm/aaaa" id="fechanacimientotext">
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
                             </div>
-                            <div class="form-group" id="groupDireccionX">
-                                <p for="direccionx">DireccionX:</p>
-                                <input type="text" class="form-control" id="direccionx" autofocus="true" placeholder="x">
+                            <div class="form-group" id="groupFechaVencimiento">
+                                <p for="fechavencimiento">Fecha Vencimiento Licencia:</p>
+                                <div id="fechavencimiento" class="input-group date form_date" data-date="" data-date-format="dd/mm/yyyy" data-link-field="dtp_input2" data-link-format="dd/mm/yyyy">
+                                    <input class="form-control" type="text" value=""  placeholder="dd/mm/aaaa" id="fechavencimientotext">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
                             </div>
-                            <div class="form-group" id="groupDireccionY">
-                                <p for="direcciony">DireccionY:</p>
-                                <input type="text" class="form-control" id="direcciony" autofocus="true" placeholder="y">
-                            </div>
-                            <div class="form-group" id="groupTelefonoTrabajo">
-                                <p for="telefono">Teléfono de trabajo:</p>
-                                <input type="text" class="form-control" id="telefono" autofocus="true" placeholder="8888-8888">
+                            <div class="form-group" id="groupChoferActual">
+                                <p for="choferactual"> Chofer actual: </p>
+                                <select class="from-control" autofocus="true" id="SeleccionChoferActual">
+                                    <option value="Si" >Si</option>
+                                    <option value="No" selected="Selected">No</option>
+                                </select>
                             </div>
                             <div class="form-group" id="groupUltimoUsuario">
                                 <p for="ultimousuario">Ultimo Usuario:</p>
                                 <input type="text" class="form-control" id="ultimousuario" autofocus="true" placeholder="x">
                             </div>
+                            <div class="form-group" id="groupFecha">
+                                <p for="fecha">Fecha:</p>
+                                <div id="fecha" class="input-group date form_date" data-date="" data-date-format="dd/mm/yyyy" data-link-field="dtp_input2" data-link-format="dd/mm/yyyy">
+                                    <input class="form-control" type="text" value=""  placeholder="dd/mm/aaaa" id="fechatext">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group" id="groupAdministrador">
+                                <p for="administrador">Administrador: </p>
+                                <select class="from-control" autofocus="true" id="SeleccionAdministrador">
+                                <option value="Si" >Si</option>
+                                <option value="No" selected="Selected">No</option>
+                                </select>
+                            </div>
+
                             <div class="form-group">
-                                <input type="hidden" value="agregarCliente" id="clientesAction"/>
+                                <input type="hidden" value="agregarChofer" id="choferAction"/>
                                 <button type="submit" class="btn btn-primary" id="enviar">Guardar</button>
                                 <button type="reset" class="btn btn-danger" id="cancelar">Cancelar</button>
                             </div>
@@ -139,7 +149,7 @@
         
          <div class="container">
             <div class="page-header">
-                <h1>Drive <small>Sistema para la administración de clientes</small></h1>
+                <h1>Drive <small>Sistema para la administración de choferes</small></h1>
             </div>
 
             <!-- ********************************************************** -->
@@ -162,20 +172,20 @@
             <!-- ********************************************************** -->
             
             <div class="panel panel-primary">
-                <div class="panel-heading"><h3>Mantenimiento de Clientes</h3></div>
+                <div class="panel-heading"><h3>Mantenimiento de Choferes</h3></div>
                 <div class="panel-body">
                     <center>
-                        <button type="button" class="btn btn-primary centered" data-toggle="modal" data-target="#myModalFormulario" id="btMostarForm">Insertar Cliente</button>
+                        <button type="button" class="btn btn-primary centered" data-toggle="modal" data-target="#myModalFormulario" id="btMostarForm">Insertar Chofer</button>
                     </center><br>
                     <!-- ********************************************************** -->
                     <div class="col-sm-12">
-                        <form role="form" onsubmit="return false;" id="formClientes" class="form-horizontal centered">
-                            <div class="form-group" id="groupUsuario">
+                        <form role="form" onsubmit="return false;" id="formChofer" class="form-horizontal centered">
+                            <div class="form-group" id="groupCedula">
                                 <div class="col-sm-4" style="text-align: right; vertical-align: middle;">
-                                    <p><b>Buscar por usuario del cliente:</b></p>
+                                    <p><b>Buscar por cedula del chofer:</b></p>
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="email" class="form-control" id="email2" placeholder="Digite el usuario del cliente">
+                                    <input type="cedula" class="form-control" id="cedula" placeholder="Digite la cedula del chofer">
                                 </div>
                                 <div class="col-sm-4">
                                     <button type="button" class="btn btn-info centered" data-toggle="modal" data-target="#myModalFormulario" id="btMostarForm">
@@ -187,7 +197,7 @@
                     </div>
                     <!-- ********************************************************** -->
 
-                    <table class="table table-hover table-condensed" id="tablaClientes"></table>
+                    <table class="table table-hover table-condensed" id="tablaChoferes"></table>
 
                 </div>
                 <div class="panel-footer">Nota: Acciones validas dependeran del rol del usuario</div>
