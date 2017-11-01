@@ -25,7 +25,7 @@
 			<header id="header">
 				<h1>¡Bienvenido a Drive!</h1>
                                 <p>Un servicio de transporte en línea<br /></p>
-                                 <p>Puedes obtener tu alquiler de vehículo con chofer <a href="viajes.html">aquí mismo</a> </p> 
+                                 <p>Puedes obtener tu alquiler de vehículo con chofer <a href="viajes.jsp">aquí mismo</a> </p> 
                                
 
                         </header>

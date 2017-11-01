@@ -8,23 +8,36 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Proyecto de Programación IV</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+        <title>Solicitud de Servicio</title>
+        <style>
+     /* Always set the map height explicitly to define the size of the div
+      * element that contains the map. */
+     #map {
+       position:relative;
+       height: 50%;
+       width: 50%;
+       left:25%;
+       top:0%;
+     }
+     /* Optional: Makes the sample page fill the window. */
+     html, body {
+       
+       margin: 0;
+       padding: 0;
+     }
+        </style>
     </head>
     <body>
-
-        <!-- Header -->
-        <header id="header">
+         <header id="header">
             <h1>¡Comienza a viajar con Drive!</h1>
-
-        </header
-
-        <!-- Puntos de recogida y llegada -->
+         </header>
+        
         <form>
             <div class="form-group">
                 <label for="inputPartida">Punto de partida:</label>
@@ -33,32 +46,75 @@
             <div class="form-group">
                 <label for="inputLlegada">Punto de llegada:</label>
                 <input type="text" class="form-control" id="inputLlegada" placeholder="Ingrese aquí el punto de llegada">
-            </div>   
-            <p></p>
-            <input type="submit" value="Confirmar viaje" />
+            </div> 
         </form>
-
-        <!-- Footer -->
-        <footer id="footer">
-
-            <ul class="icons">
-                <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                <li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
-                <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-            </ul>
-
-            <ul class="copyright">
-                <li>Credits: &copy; Laura Flores Rojas, Alejandro Calderon, Linsey Garro.</li>
-            </ul>
-        </footer>
+        
 
         <!-- Scripts -->
         <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
         <script src="assets/js/main.js"></script>
-        <p><a href="terminos.html">Términos y condiciones</a></p> 
-        <p></p>
-        <p></p>
-        <p></p>
+        
+        <div id="map"></div>
+        <script>
+          // Note: This example requires that you consent to location sharing when
+          // prompted by your browser. If you see the error "The Geolocation service
+            // failed.", it means you probably did not give permission for the browser to
+            // locate you.
+
+            function initMap() {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: -34.397, lng: 150.644},
+                    zoom: 20
+                });
+                var infoWindow = new google.maps.InfoWindow({map: map});
+
+                // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                       
+
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent('Location found.');
+                        map.setCenter(pos);
+                    }, function () {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
+                
+                var gCoder= new google.maps.GeoCoder();
+                var objInformacion={
+                    address: document.getElementById("inputPartida");
+                };
+                gCoder.geoCoder(objInformacion,fn_coder);
+                
+                function fn_coder(){
+                    
+                }
+              
+            }
+
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                infoWindow.setPosition(pos);
+                infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+            }
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0jrfSYIWLMuDh826ai7JFOs_nUsgpzQo&callback=initMap">
+        </script>
+        
+        
+        
+         <input type="submit" value="Confirmar viaje" />
+
+        
     </body>
 </html>

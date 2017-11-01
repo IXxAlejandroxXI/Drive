@@ -46,6 +46,7 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bdproyecto?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
+    <property name="hibernate.connection.isolation">2</property>
     <mapping resource="cr/ac/una/proyecto/navegacion/domain/Chofer.hbm.xml"/>
     <mapping resource="cr/ac/una/proyecto/navegacion/domain/Clientes.hbm.xml"/>
     <mapping resource="cr/ac/una/proyecto/navegacion/domain/Vehiculos.hbm.xml"/>
