@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02/11/2017, 06:04:10 PM
+    Author     : Linsey
+*/
+
+/* Always set the map height explicitly to define the size of the div
+      * element that contains the map. */
+     #map {
+       position:relative;
+       height: 50%;
+       width: 50%;
+       left:25%;
+       top:0%;
+     }
+     /* Optional: Makes the sample page fill the window. */
+     html, body {
+       
+       margin: 0;
+       padding: 0;
+     }
