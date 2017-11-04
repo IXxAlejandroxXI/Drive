@@ -47,6 +47,9 @@
       </li>
       <li class="dropdown"><a class="dropdown-toggle"  href="VehiculosJSP.jsp">Mantenimiento Vehiculos</a>
       </li>
+      <li class="dropdown"><a class="dropdown-toggle"  href="ConsultaViajes.jsp">Consulta Viajes</a>
+      </li>
+      
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Cerrar Sesion</a></li>

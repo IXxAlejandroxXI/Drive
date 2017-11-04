@@ -44,6 +44,14 @@
         <servlet-name>ChoferesServlet</servlet-name>
         <url-pattern>/ChoferesServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ViajesServlet</servlet-name>
+        <servlet-class>cr.ac.una.proyecto.navegacion.controller.ViajesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViajesServlet</servlet-name>
+        <url-pattern>/ViajesServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
