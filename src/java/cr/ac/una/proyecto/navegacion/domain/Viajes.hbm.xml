@@ -8,13 +8,13 @@
             <column name="numero" />
             <generator class="identity" />
         </id>
-        <many-to-one name="chofer" class="cr.ac.una.proyecto.navegacion.domain.Chofer" fetch="select">
+        <many-to-one name="chofer" class="cr.ac.una.proyecto.navegacion.domain.Chofer" fetch="select" lazy="false">
             <column name="cedula" length="9" not-null="true" />
         </many-to-one>
-        <many-to-one name="clientes" class="cr.ac.una.proyecto.navegacion.domain.Clientes" fetch="select">
+        <many-to-one name="clientes" class="cr.ac.una.proyecto.navegacion.domain.Clientes" fetch="select" lazy="false">
             <column name="usuario" length="15" not-null="true" />
         </many-to-one>
-        <many-to-one name="vehiculos" class="cr.ac.una.proyecto.navegacion.domain.Vehiculos" fetch="select">
+        <many-to-one name="vehiculos" class="cr.ac.una.proyecto.navegacion.domain.Vehiculos" fetch="select" lazy="false">
             <column name="placa" length="6" not-null="true" />
         </many-to-one>
         <property name="fecha" type="date">

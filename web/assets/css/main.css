@@ -47,6 +47,10 @@
 	body {
 		-webkit-text-size-adjust: none;
 	}
+        
+        viajes{
+            color:black;
+        }
 
 /* Box Model */
 

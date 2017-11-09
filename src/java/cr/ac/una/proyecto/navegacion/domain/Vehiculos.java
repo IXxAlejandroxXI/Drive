@@ -4,6 +4,7 @@ package cr.ac.una.proyecto.navegacion.domain;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -23,7 +24,7 @@ public class Vehiculos  implements java.io.Serializable {
      private float ubicacionActualY;
      private Date fecha;
      private String ultimoUsuario;
-     private Set<Viajes> viajeses = new HashSet<Viajes>(0);
+     private List<Viajes> viajeses;
 
     public Vehiculos() {
     }
@@ -42,7 +43,7 @@ public class Vehiculos  implements java.io.Serializable {
         this.fecha = fecha;
         this.ultimoUsuario = ultimoUsuario;
     }
-    public Vehiculos(String placa, String cedula, int ano, String modelo, String color, float puntuacion, String estado, float ubicacionActualX, float ubicacionActualY, Date fecha, String ultimoUsuario, Set<Viajes> viajeses) {
+    public Vehiculos(String placa, String cedula, int ano, String modelo, String color, float puntuacion, String estado, float ubicacionActualX, float ubicacionActualY, Date fecha, String ultimoUsuario, List viajeses) {
        this.placa = placa;
        this.cedula = cedula;
        this.ano = ano;
@@ -134,11 +135,11 @@ public class Vehiculos  implements java.io.Serializable {
     public void setUltimoUsuario(String ultimoUsuario) {
         this.ultimoUsuario = ultimoUsuario;
     }
-    public Set<Viajes> getViajeses() {
+    public List<Viajes> getViajeses() {
         return this.viajeses;
     }
     
-    public void setViajeses(Set<Viajes> viajeses) {
+    public void setViajeses(List<Viajes> viajeses) {
         this.viajeses = viajeses;
     }
 

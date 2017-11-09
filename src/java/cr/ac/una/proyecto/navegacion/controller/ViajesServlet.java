@@ -10,6 +10,7 @@ import cr.ac.una.proyecto.navegacion.bl.ViajesBL;
 import cr.ac.una.proyecto.navegacion.domain.Viajes;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Locale;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -60,7 +61,17 @@ public class ViajesServlet extends HttpServlet {
             String accion = request.getParameter("accion");
             switch (accion) {
                 case "consultarViajes":
-                    json = new Gson().toJson(vBL.findAll(Viajes.class.getName()));
+                    List<Viajes> l = vBL.findAll(Viajes.class.getName());
+                    for(int i=0; i<l.size();i++){
+                        l.get(i).setCedula(l.get(i).getChofer().getCedula());
+                        l.get(i).setUsuario(l.get(i).getClientes().getUsuario());
+                        l.get(i).setPlaca(l.get(i).getVehiculos().getPlaca());
+                        l.get(i).setChofer(null);
+                        l.get(i).setClientes(null);
+                        l.get(i).setVehiculos(null);
+                    }
+                    
+                    json = new Gson().toJson(l);
                     out.print(json);         
                     break;
                     

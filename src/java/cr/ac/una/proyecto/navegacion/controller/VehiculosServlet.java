@@ -8,11 +8,14 @@ package cr.ac.una.proyecto.navegacion.controller;
 import com.google.gson.Gson;
 import cr.ac.una.proyecto.navegacion.bl.VehiculosBL;
 import cr.ac.una.proyecto.navegacion.domain.Vehiculos;
+import cr.ac.una.proyecto.navegacion.domain.Viajes;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -63,7 +66,11 @@ public class VehiculosServlet extends HttpServlet{
             String accion = request.getParameter("accion");
             switch (accion) {
                 case "consultarVehiculos":
-                    json = new Gson().toJson(vBL.findAll(Vehiculos.class.getName()));
+                     List<Vehiculos> l = vBL.findAll(Vehiculos.class.getName());
+                    for(int i = 0; i<l.size(); i++){
+                        l.get(i).setViajeses(new ArrayList<Viajes>());
+                    }
+                     json = new Gson().toJson(l);
                     out.print(json);         
                     break;
                 case "eliminarVehiculos":

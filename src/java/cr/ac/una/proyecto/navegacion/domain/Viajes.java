@@ -24,11 +24,15 @@ public class Viajes  implements java.io.Serializable {
      private Date fechaMod;
      private float puntoFinalX;
      private float puntoFinalY;
+     private String usuario;
+     private String placa;
+     private String cedula;
 
     public Viajes() {
+        this.numero = 0;
     }
 
-    public Viajes(Chofer chofer, Clientes clientes, Vehiculos vehiculos, Date fecha, float puntoInicioX, float puntoInicioY, int duracion, double monto, int calificacion, String ultimoUsuario, Date fechaMod, float puntoFinalX, float puntoFinalY) {
+    public Viajes(Chofer chofer, Clientes clientes, Vehiculos vehiculos, Date fecha, float puntoInicioX, float puntoInicioY, int duracion, double monto, int calificacion, String ultimoUsuario, Date fechaMod, float puntoFinalX, float puntoFinalY, String usuario, String cedula, String placa) {
        this.chofer = chofer;
        this.clientes = clientes;
        this.vehiculos = vehiculos;
@@ -42,6 +46,9 @@ public class Viajes  implements java.io.Serializable {
        this.fechaMod = fechaMod;
        this.puntoFinalX = puntoFinalX;
        this.puntoFinalY = puntoFinalY;
+       this.usuario=usuario;
+       this.cedula=cedula;
+       this.placa=placa;
     }
    
     public Integer getNumero() {
@@ -141,6 +148,18 @@ public class Viajes  implements java.io.Serializable {
     
     public void setPuntoFinalY(float puntoFinalY) {
         this.puntoFinalY = puntoFinalY;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
 

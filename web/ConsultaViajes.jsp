@@ -17,9 +17,19 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="assets/js/consultaViajes.js" type="text/javascript"></script>
+        <script src="assets/js/jquery-3.2.1.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="assets/css/datetimepicker.min.css" rel="stylesheet" type="text/css"/>
+        <script src="assets/js/datetimepicker.js" type="text/javascript"></script>
+        <script src="assets/js/utils.js" type="text/javascript"></script>
+        <script src="assets/js/jquery.simplePagination.js" type="text/javascript"></script>
+        <link href="assets/css/simplePagination.css" rel="stylesheet" type="text/css"/>
         <title>Viajes </title>
     </head>
     <body>
+        <div id="viajes">
         <h1>Consulta de viajes!</h1>
         
         <nav class="navbar navbar-inverse">
@@ -97,6 +107,7 @@
                 <div class="panel-footer">Nota: Acciones validas dependeran del rol del usuario</div>
             </div>
         </div>
+        </div>
 
 
         <footer id="footer">
@@ -123,5 +134,4 @@
         
         
         
-    </body>
-</html>
+
