@@ -12,43 +12,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
-        <script src="assets/js/viajes.js" type="text/javascript"></script>
-        <link href="assets/css/viajes.css" rel="stylesheet" type="text/css"/>
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <title>Solicitud de Servicio</title>
-          <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0jrfSYIWLMuDh826ai7JFOs_nUsgpzQo&callback=initMap">
-        </script>
-
     </head>
     <body>
-         <header id="header">
-            <h1>¡Comienza a viajar con Drive!</h1>
-         </header>
-        
-        <form>
-            <div class="form-group">
-                <label for="inputPartida">Punto de partida:</label>
-                <input type="text" class="form-control" id="inputPartida" placeholder="Ingrese aquí el punto de partida">
-            </div>
-            <div class="form-group">
-                <label for="inputLlegada">Punto de llegada:</label>
-                <input type="text" class="form-control" id="inputLlegada" placeholder="Ingrese aquí el punto de llegada">
-            </div> 
-        </form>
-        
-
-        <!-- Scripts -->
+        <h1>¡Comienza tu viaje!</h1>
+        <p>
+            <input id="address" type="text" placeholder="Mi posicion"></p>
+        <p>
+            <input id="address2" type="text" placeholder="Mi destino"></p>
+        <p>
+          <input type="button" id="comenzar" value="Comenzar Viaje" onclick="codeAddress()">
+        </p>
+        </div>
+        <div id="map-canvas"></div>
+      <p>Total Distance: <span id="total"></span></p>
+    </div>
         <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
         <script src="assets/js/main.js"></script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0jrfSYIWLMuDh826ai7JFOs_nUsgpzQo&callback=initMap">
+        </script>
+        <script src="assets/js/maps.js" type="text/javascript"></script>
         
-        <div id="map"></div>
-       
-        
-        
-        
-         <input type="submit" value="Confirmar viaje" />
 
         
     </body>

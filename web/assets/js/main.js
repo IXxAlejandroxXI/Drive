@@ -162,7 +162,7 @@
 								$submit.disabled = false;
 
 							// Show message.
-								$message._show('success', 'Espere por favor... Valindando Datos!');
+								$message._show('success', 'Espere por favor... Validando Datos!');
 								//$message._show('failure', 'Something went wrong. Please try again.');
 
 						}, 750);

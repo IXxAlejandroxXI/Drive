@@ -47,10 +47,6 @@
 	body {
 		-webkit-text-size-adjust: none;
 	}
-        
-        viajes{
-            color:black;
-        }
 
 /* Box Model */
 
@@ -1194,3 +1190,31 @@
                 #editarbtn{
                     background-color: #555555;
                 }
+                #address{
+                    width: 400px  
+                }
+                #address2{
+                    width: 400px  
+                }
+                #comenzar{
+                    width: 200px  
+                }
+               #map-canvas {
+       padding: 120px ;
+       margin: 40px;
+     }
+     /* Optional: Makes the sample page fill the window. */
+     html, body {
+       
+       margin: 0;
+       padding: 0;
+     }
+     #ingreso{
+         padding: 3px 15px;
+         margin: 20px;
+     }
+     #signup-form2{
+       position:relative;
+       left:0%;
+       top:-50px;
+     }
