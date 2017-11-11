@@ -18,6 +18,7 @@
         <title>Solicitud de Servicio</title>
     </head>
     <body>
+        <p></p>
         <h1>¡Comienza tu viaje!</h1>
         <p>
             <input id="address" type="text" placeholder="Mi posicion"></p>

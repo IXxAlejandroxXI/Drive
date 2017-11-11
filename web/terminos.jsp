@@ -23,11 +23,20 @@
             <h1>¡Conocé nuestros términos y condiciones de uso!</h1>
         </header>
         <b>Uso del sitio web:</b>
-        <p> Este sitio web está destinado a uso personal, no a uso comercial, de modo que si tiene intención de usarlo con otros fines, por favor, absténgase de hacerlo.</p>
+        <p> Este sitio web está destinado a uso personal, no a uso comercial, 
+        de modo que si tiene intención de usarlo con otros fines,
+        por favor, absténgase de hacerlo.</p>
         <b>Disponibilidad:</b>
-        <p>Tratamos de que el sitio esté accesible las 24 horas del día, aunque puede que en ocasiones no sea posible acceder a él durante algún tiempo por diferentes motivos. No podemos aceptar ninguna responsabilidad al respecto.</p>
+        <p>Tratamos de que el sitio esté accesible las 24 horas del día,
+            aunque puede que en ocasiones no sea posible acceder a él durante
+            algún tiempo por diferentes motivos. No podemos aceptar ninguna
+            responsabilidad al respecto.</p>
         <b>Responsabilidad</b>
-        <p>Asumimos responsabilidades con las personas que usan nuestro servicio de reservas; estas aparecen recogidas en nuestros Términos. Aparte de eso, no aceptamos responsabilidad de ningún tipo derivada de la existencia de este sitio web.</p>
+        <p>Asumimos responsabilidades 
+            con las personas que usan nuestro servicio de reservas; 
+            estas aparecen recogidas en nuestros Términos. Aparte de 
+            eso, no aceptamos responsabilidad de ningún tipo derivada de 
+            la existencia de este sitio web.</p>
         <a href="index.html">Regresa al inicio</a>
         <p></p>
         <!-- Footer -->
