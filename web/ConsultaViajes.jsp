@@ -3,7 +3,20 @@
     Created on : 03/11/2017, 08:53:24 PM
     Author     : Linsey
 --%>
+<%
 
+    HttpSession sesion = request.getSession(true);
+    String tipoUsuario = "";
+    if(sesion!=null){
+        if (sesion.getAttribute("usuario")  == null) {
+            response.sendRedirect("index.jsp");
+        }else{
+            tipoUsuario = (String)sesion.getAttribute("usuario");
+        }
+    }else{
+        response.sendRedirect("index.jsp");
+    }
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
