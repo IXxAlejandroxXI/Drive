@@ -2,6 +2,7 @@
 // // Funcion para generar el datetimepicker
 // Además de agregar los eventos a las respectivas etiquetas
 //******************************************************************************
+var last;
 $(function () {
     
     //agrega los eventos las capas necesarias
@@ -108,6 +109,12 @@ function limpiarForm() {
 
     //Resetear el formulario
     $('#formLogin').trigger("reset");
+}
+function quien(){
+    last = enviaultimo();
+}
+function ultimo(){
+    return last;
 }
 
 

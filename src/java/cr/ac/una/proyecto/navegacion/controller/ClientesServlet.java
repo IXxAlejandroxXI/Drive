@@ -92,7 +92,7 @@ public class ClientesServlet extends HttpServlet {
 
                     //Se llena el objeto con los datos enviados por AJAX por el metodo post
                     p.setUsuario(request.getParameter("usuario"));
-                    p.setContrasena(request.getParameter("contrasena"));
+                        p.setContrasena(request.getParameter("contrasena"));
                     p.setNombre(request.getParameter("nombre"));
                     p.setApellidos(request.getParameter("apellidos"));
                     p.setCorreo(request.getParameter("correo"));

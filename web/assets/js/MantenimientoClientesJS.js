@@ -2,6 +2,9 @@
 // // Funcion para generar el datetimepicker
 // Además de agregar los eventos a las respectivas etiquetas
 //******************************************************************************
+var x;
+var y;
+var ult;
 $(function () {
     //Genera el datapicker
     $('#fechanacimiento').datetimepicker({
@@ -28,8 +31,9 @@ $(function () {
     $("#btMostarForm").click(function () {
         limpiarForm();
     });
-    
-    
+    $("buscarUser").click(function (){
+        busqueda();
+    });
 });
 
 //******************************************************************************
@@ -67,7 +71,83 @@ function consultarClientes() {
         dataType: "json"
     });
 }
+function buscar(placa){
+    $.ajax({
+        url: 'ClientesServlet',
+        data: {
+            accion: "consultarClientes"
+        },
+        error: function () { //si existe un error en la respuesta del ajax
+            alert("Se presento un error a la hora de cargar la información de los vehiculos en la base de datos");
+        },
+        success: function (data) { //si todo esta correcto en la respuesta del ajax, la respuesta queda en el data
+            $("#tablaClientes").html("");
+            /*for (var i=0;i<data.length;i++){
+                if(data[i].nombre.indexOf(nombre)>-1)
+                dibujarFila(data[i]);
+            }*/
+            dibujarTablaBuscar(data,placa);
+            // se oculta el modal esta funcion se encuentra en el utils.js
+            ocultarModal("myModal");
+        },
+        type: 'POST',
+        dataType: "json"
+    });
+}
 
+
+function busqueda() {
+    var filter, table, tr, td, i;
+    filter = $("#email").val().toUpperCase();
+    table = document.getElementById("tablaClientes");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+    paginacion();
+}
+
+function paginacion() {
+    // Grab whatever we need to paginate
+    var pageParts = $(".paginate");
+
+    // How many parts do we have?
+    var numPages = pageParts.length;
+    // How many parts do we want per page?
+    var perPage = 5;
+
+    // When the document loads we're on page 1
+    // So to start with... hide everything else
+    pageParts.slice(perPage).hide();
+    // Apply simplePagination to our placeholder
+    $("#page-nav").pagination({
+        items: numPages,
+        itemsOnPage: perPage,
+        cssStyle: "light-theme",
+        prevText: "<<",
+        nextText: ">>",
+        // We implement the actual pagination
+        //   in this next function. It runs on
+        //   the event that a user changes page
+        onPageClick: function (pageNum) {
+            // Which page parts do we show?
+            var start = perPage * (pageNum - 1);
+            var end = start + perPage;
+
+            // First hide all page parts
+            // Then show those just for our page
+            pageParts.hide()
+                    .slice(start, end).show();
+        }
+    });
+}
 function dibujarTabla(dataJson) {
     //limpia la información que tiene la tabla
     $("#tablaClientes").html(""); 
@@ -126,6 +206,8 @@ function dibujarFila(rowData) {
 //******************************************************************************
 
 function enviar() {
+   // var g = prueba();
+    pos();
     if (validar()) {
         //Se envia la información por ajax
         console.log($("#usuario").val());
@@ -139,10 +221,10 @@ function enviar() {
                 apellidos: $("#apellidos").val(),
                 correo: $("#correo").val(),
                 fechaNacimiento: $("#dpFechaNacimiento").data('date'),
-                direccionx: $("#direccionx").val(),
-                direcciony: $("#direcciony").val(),
+                direccionx: x,
+                direcciony: y,
                 telefono: $("#telefono").val(),
-                ultimousuario: $("#ultimousuario").val(),
+                ultimousuario: "",
                 fecha: new Date()
             },
             error: function () { //si existe un error en la respuesta del ajax
@@ -207,22 +289,22 @@ function validar() {
         $("#groupCorreo").addClass("has-error");
         validacion = false;
     }
-    if ($("#direccionx").val() === "") {
-        $("#groupDireccionX").addClass("has-error");
-        validacion = false;
-    }
-    if ($("#direcciony").data('date') === "") {
-        $("#groupDireccionY").addClass("has-error");
-        validacion = false;
-    }
+//    if ($("#direccionx").val() === "") {
+//        $("#groupDireccionX").addClass("has-error");
+//        validacion = false;
+//    }
+//    if ($("#direcciony").data('date') === "") {
+//        $("#groupDireccionY").addClass("has-error");
+//        validacion = false;
+//    }
     if ($("#telefono").val() === "") {
         $("#groupTelefonoTrabajo").addClass("has-error");
         validacion = false;
     }
-    if ($("#ultimousuario").data('date') === "") {
-        $("#groupUltimoUsuario").addClass("has-error");
-        validacion = false;
-    }
+//    if ($("#ultimousuario").data('date') === "") {
+//        $("#groupUltimoUsuario").addClass("has-error");
+//        validacion = false;
+//    }
 
     return validacion;
 }
@@ -310,10 +392,10 @@ function consultarClienteByID(idCliente) {
             $("#dpFechaNacimientoText").val(fechatxt);
             
             //$("#dpFechaNacimiento")$('.datepicker').datepicker('update', new Date(2011, 2, 5));
-            $("#direccionx").val(data.direccionX);
-            $("#direcciony").val(data.direccionY);
+//            $("#direccionx").val(data.direccionX);
+//            $("#direcciony").val(data.direccionY);
             $("#telefono").val(data.telefonoTrabajo);
-            $("#ultimousuario").val(data.ultimoUsuario);
+            //$("#ultimousuario").val(data.ultimoUsuario);
         },
         type: 'POST',
         dataType: "json"
@@ -355,11 +437,8 @@ function limpiarForm() {
     //Resetear el formulario
     $('#formClientes').trigger("reset");
 }
-$(function() {
-    $("tablaClientes").pagination({
-        items: 100,
-        itemsOnPage: 10,
-        cssStyle: 'light-theme'
-    });
-});
-
+function pos(){
+    x = posicionx();
+    
+    y = posiciony();
+}

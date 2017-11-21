@@ -43,7 +43,7 @@
         <script src="assets/js/VehiculosJS.js" type="text/javascript"></script>
         <script src="assets/js/utils.js" type="text/javascript"></script>
         <link href="assets/css/simplePagination.css" rel="stylesheet" type="text/css"/>
-         
+        <script src="assets/js/maps.js" type="text/javascript"></script>
         
     </head>
     <body>

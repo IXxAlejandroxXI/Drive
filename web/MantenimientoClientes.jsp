@@ -39,6 +39,9 @@
         <script src="assets/js/datetimepicker.js" type="text/javascript"></script>
         <script src="assets/js/utils.js" type="text/javascript"></script>
         <script src="assets/js/MantenimientoClientesJS.js" type="text/javascript"></script>
+        <script src="assets/js/jquery.simplePagination.js" type="text/javascript"></script>
+        <link href="assets/css/simplePagination.css" rel="stylesheet" type="text/css"/>
+        <script src="assets/js/maps.js" type="text/javascript"></script>
     </head>
     <body>
 
@@ -66,7 +69,7 @@
       
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Cerrar Sesion</a></li>
+                    <li><a href="index.jsp"><span class="glyphicon glyphicon-log-in" onclick="ultuser()"></span> Cerrar Sesion</a></li>
                 </ul>
             </div>
         </nav>
@@ -121,22 +124,12 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="form-group" id="groupDireccionX">
-                                <p for="direccionx">DireccionX:</p>
-                                <input type="text" class="form-control" id="direccionx" autofocus="true" placeholder="x">
-                            </div>
-                            <div class="form-group" id="groupDireccionY">
-                                <p for="direcciony">DireccionY:</p>
-                                <input type="text" class="form-control" id="direcciony" autofocus="true" placeholder="y">
-                            </div>
+                            
                             <div class="form-group" id="groupTelefonoTrabajo">
                                 <p for="telefono">Teléfono de trabajo:</p>
                                 <input type="text" class="form-control" id="telefono" autofocus="true" placeholder="8888-8888">
                             </div>
-                            <div class="form-group" id="groupUltimoUsuario">
-                                <p for="ultimousuario">Ultimo Usuario:</p>
-                                <input type="text" class="form-control" id="ultimousuario" autofocus="true" placeholder="x">
-                            </div>
+                            
                             <div class="form-group">
                                 <input type="hidden" value="agregarCliente" id="clientesAction"/>
                                 <button type="submit" class="btn btn-primary" id="enviar">Guardar</button>
@@ -196,7 +189,7 @@
                                     <input type="email" class="form-control" id="email2" placeholder="Digite el usuario del cliente">
                                 </div>
                                 <div class="col-sm-4">
-                                    <button type="button" class="btn btn-info centered" data-toggle="modal" data-target="#myModalFormulario" id="btMostarForm">
+                                    <button type="button" class="btn btn-info centered"  id="buscarUser">
                                         Buscar <span class="glyphicon glyphicon-search"></span>
                                     </button>
                                 </div>

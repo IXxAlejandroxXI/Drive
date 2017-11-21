@@ -32,7 +32,7 @@ $(function () {
         forceParse: 0
     });
     //agrega los eventos las capas necesarias
-    $("#enviar").click(function () {
+        $("#enviar").click(function () {
         enviar();
     });
 
@@ -94,14 +94,14 @@ function dibujarTabla(dataJson) {
     var row = $("<tr />");
     head.append(row);
     $("#tablaChoferes").append(head); 
-    row.append($("<th><b>CEDULA</b></th>"));
-    row.append($("<th><b>TIPO DE LICENCIA</b></th>"));
-    row.append($("<th><b>FECHA DE NACIMIENTO</b></th>"));
-    row.append($("<th><b>FECHA VENCIMIENTO LICENCIA</b></th>"));
-    row.append($("<th><b>CHOFER ACTUAL</b></th>"));
-    row.append($("<th><b>ULTIMO USUARIO</th>"));
-    row.append($("<th><b>FECHA</b></th>"));
-    row.append($("<th><b>ADMINISTRADOR</b></th>"));
+    row.append($("<th><p>CEDULA</b></th>"));
+    row.append($("<th><p>TIPO DE LICENCIA</p></th>"));
+    row.append($("<th><p>FECHA DE NACIMIENTO</p></th>"));
+    row.append($("<th><p>FECHA VENCIMIENTO LICENCIA</p></th>"));
+    row.append($("<th><p>CHOFER ACTUAL</p></th>"));
+    row.append($("<th><p>ULTIMO USUARIO</p></th>"));
+    row.append($("<th><p>FECHA</p></th>"));
+    row.append($("<th><p>ADMINISTRADOR</p></th>"));
     
     //carga la tabla con el json devuelto
     for (var i = 0; i < dataJson.length; i++) {
@@ -112,7 +112,7 @@ function dibujarTabla(dataJson) {
 function dibujarFila(rowData) {
     //Cuando dibuja la tabla en cada boton se le agrega la funcionalidad de cargar o eliminar la informacion
     //de una persona
-    
+    var user = rowData.cedula;
     var row = $("<tr />");
     $("#tablaChoferes").append(row); 
     row.append($("<td>" + rowData.cedula + "</td>"));
@@ -123,10 +123,10 @@ function dibujarFila(rowData) {
     row.append($("<td>" + rowData.ultimoUsuario + "</td>"));
     row.append($("<td>" + rowData.fecha + "</td>"));
     row.append($("<td>" + rowData.administrador + "</td>"));
-    row.append($('<td><button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="consultarChoferByID(\'' + rowData.cedula + '\');">'+
+    row.append($('<td><button type="button" id="editarbtn" class="btn btn-default btn-xs" aria-label="Left Align" onclick="consultarChoferByID(\'' + user + '\');">'+
                         '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>'+
                     '</button>'+
-                    '<button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="eliminarChofer(\'' + rowData.cedula + '\');">'+
+                    '<button type="button" id="elibtn" class="btn btn-default btn-xs" aria-label="Left Align" onclick="eliminarChofer(\'' + user + '\');">'+
                         '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'+
                     '</button></td>'));
     
@@ -205,30 +205,30 @@ function validar() {
         $("#groupTipoLicencia").addClass("has-error");
         validacion = false;
     }
-    if ($("#fechaNacimiento").data('date') === "") {
-        $("#groupFechaNacimiento").addClass("has-error");
-        validacion = false;
-    }
-    if ($("#fechaVencimientoLicencia").date ('date') === "") {
-        $("#groupFechaVencimientoLicencia").addClass("has-error");
-        validacion = false;
-    }
-    if ($("#choferActual").val() === "") {
-        $("#groupChoferActual").addClass("has-error");
-        validacion = false;
-    }
-    if ($("#ultimoUsuario").val() === "") {
-        $("#groupUltimoUsuario").addClass("has-error");
-        validacion = false;
-    }
-    if ($("#fecha").data('date') === "") {
-        $("#groupFecha").addClass("has-error");
-        validacion = false;
-    }
-    if ($("#administrador").val() === "") {
-        $("#groupAdministrador").addClass("has-error");
-        validacion = false;
-    }
+//    if ($("#fechaNacimiento").data('date') === "") {
+//        $("#groupFechaNacimiento").addClass("has-error");
+//        validacion = false;
+//    }
+//    if ($("#fechaVencimientoLicencia").date ('date') === "") {
+//        $("#groupFechaVencimientoLicencia").addClass("has-error");
+//        validacion = false;
+//    }
+//    if ($("#choferActual").val() === "") {
+//        $("#groupChoferActual").addClass("has-error");
+//        validacion = false;
+//    }
+//    if ($("#ultimoUsuario").val() === "") {
+//        $("#groupUltimoUsuario").addClass("has-error");
+//        validacion = false;
+//    }
+//    if ($("#fecha").data('date') === "") {
+//        $("#groupFecha").addClass("has-error");
+//        validacion = false;
+//    }
+//    if ($("#administrador").val() === "") {
+//        $("#groupAdministrador").addClass("has-error");
+//        validacion = false;
+//    }
     return validacion;
 }
 
@@ -367,13 +367,6 @@ function limpiarForm() {
     //Resetear el formulario
     $('#formChoferes').trigger("reset");
 }
-$(function() {
-    $("tablaChoferes").pagination({
-        items: 100,
-        itemsOnPage: 10,
-        cssStyle: 'light-theme'
-    });
-});
 
 
 

@@ -6,7 +6,8 @@
 
 var cedula;
 var placa;
-
+var x;
+var y;
 $(function () {
     //Genera el datapicker
 //    $('#dpFechaNacimiento').datetimepicker({
@@ -224,7 +225,7 @@ function dibujarFila(rowData) {
 function busqueda() {
     var filter, table, tr, td, i;
     filter = $("#email").val().toUpperCase();
-    table = document.getElementById("tablaVehiculos");
+    table = document.getElementById("tablaPersonas");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[2];
@@ -282,6 +283,7 @@ function paginacion() {
 //******************************************************************************
 
 function enviar() {
+    pos();
     if (validar()) {
         removeError();
         //Se envia la información por ajax
@@ -295,8 +297,8 @@ function enviar() {
                 color: $("#color").val(),
                 puntuacion: $("#puntuacion").val(),
                 estado: $("#estado").val(),
-                ubicacionActualX: $("#ubicacionActualX").val(),
-                ubicacionActualY: $("#ubicacionActualY").val(),
+                ubicacionActualX: x,
+                ubicacionActualY: y,
                 cedula: $("#cedula").val(),
                 fecha: $("#fecha").data('date'),
                 ultimoUsuario: 'Linsey'
@@ -548,6 +550,11 @@ function limpiarForm() {
     $('#formVehiculos').trigger("reset");
     
     $('#formVehiculos1').trigger("reset");
+}
+function pos(){
+    x = posicionx();
+    
+    y = posiciony();
 }
 
 

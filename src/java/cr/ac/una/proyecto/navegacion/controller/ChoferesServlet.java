@@ -115,7 +115,7 @@ public class ChoferesServlet extends HttpServlet {
                     if(aux1.equals("Si"))
                         p.setAdministrador(true);
                     else
-                        p.setAdministrador(false);
+                            p.setAdministrador(false);
 
                     //Guardar Correctamente en la base de datos
 //                    String fechatxt = request.getParameter("fechanacimiento");

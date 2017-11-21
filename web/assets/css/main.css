@@ -1210,11 +1210,38 @@
        padding: 0;
      }
      #ingreso{
-         padding: 3px 15px;
+         padding: 3px 35px;
          margin: 20px;
+         position:relative;
+       left:75px;
+       top:-10px;
      }
      #signup-form2{
        position:relative;
-       left:0%;
-       top:-50px;
+       left:0px;
+       top:-40px;
+     }
+     #signup-form{
+       position:relative;
+       left:0px;
+       top:-30px;
+     }
+     #header{
+       position:relative;
+       left:0px;
+       top:0px;  
+     }
+     #unirse{
+         padding: 3px 30px;
+         margin: 20px;
+         position:relative;
+       left:75px;
+       top:-10px;
+     }
+     #regis{
+         padding: 3px 15px;
+         margin: 20px;
+         position:relative;
+       left:75px;
+       top:5px;
      }
