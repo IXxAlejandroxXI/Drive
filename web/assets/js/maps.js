@@ -66,7 +66,8 @@ directionsDisplay.addListener('directions_changed', function () {
     costo(re);
 });
 deleteMarkers(); 
-
+var usuario = ultimo();
+var clientes = client(usuario);
 displayRoute(address, address2, directionsService,
         directionsDisplay);
 

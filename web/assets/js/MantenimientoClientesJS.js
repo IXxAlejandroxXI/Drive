@@ -5,6 +5,7 @@
 var x;
 var y;
 var ult;
+var cliente;
 $(function () {
     //Genera el datapicker
     $('#fechanacimiento').datetimepicker({
@@ -396,10 +397,12 @@ function consultarClienteByID(idCliente) {
 //            $("#direcciony").val(data.direccionY);
             $("#telefono").val(data.telefonoTrabajo);
             //$("#ultimousuario").val(data.ultimoUsuario);
+            cliente = data;
         },
         type: 'POST',
         dataType: "json"
     });
+    
 }
 
 
@@ -441,4 +444,8 @@ function pos(){
     x = posicionx();
     
     y = posiciony();
+}
+function client(usuario){
+    consultarClienteByID(usuario);
+    return cliente;
 }

@@ -83,10 +83,12 @@ public class UsuariosServlet extends HttpServlet {
                             session.setAttribute("loginStatus", "login");
                             if (p.getCedula().equals(usuario)) {
                                 session.setAttribute("tipo", "Administrador");
+                                out.print("A~Validación correcta... espere esta siendo redireccionado");
                             } else {
                                 session.setAttribute("tipo", "Normal");
+                                out.print("C~Validación correcta... espere esta siendo redireccionado");
                             }
-                            out.print("C~Validación correcta... espere esta siendo redireccionado");
+                            //out.print("C~Validación correcta... espere esta siendo redireccionado");
                         } else {
                             out.print("E~Usuario o contraseña invalidos");
                         }

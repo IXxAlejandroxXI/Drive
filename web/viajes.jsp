@@ -15,6 +15,10 @@
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="assets/js/MantenimientoChoferesJS.js" type="text/javascript"></script>
+        <script src="assets/js/MantenimientoClientesJS.js" type="text/javascript"></script>
+        <script src="assets/js/VehiculosJS.js" type="text/javascript"></script>
+        <script src="assets/js/LoginJS.js" type="text/javascript"></script>
         <title>Solicitud de Servicio</title>
     </head>
     <body>

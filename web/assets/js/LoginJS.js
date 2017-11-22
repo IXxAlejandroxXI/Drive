@@ -7,7 +7,10 @@ $(function () {
     
     //agrega los eventos las capas necesarias
     $("#ingreso").click(function () {
+        last=$("#email").val();
+        var x = 1 + 2;
         enviar();
+        
     });
     
 });
@@ -40,16 +43,30 @@ function enviar() {
                     
                     //se redirecciona en JavaScript
                     setTimeout(function(){
-                        window.location="MantenimientoChoferes.jsp";
+                        window.location="Clientes.jsp";
+                        
                     }, 2000);
                     
                     
                 } else {
+                    if (tipoRespuesta === "A~") {
+                    mostrarMensaje("alert alert-success", respuestaTxt, "Correcto!");
+                    //$("#myModalFormulario").modal("hide");
+                    
+                    //se redirecciona en JavaScript
+                    setTimeout(function(){
+                        window.location="MantenimientoClientes.jsp";
+                        
+                    }, 2000);
+                    
+                    
+                }else{
                     if (tipoRespuesta === "E~") {
                         mostrarMensaje("alert alert-danger", respuestaTxt, "Error!");
                     } else {
                         mostrarMensaje("alert alert-danger", "Se genero un error, contacte al administrador", "Error!");
                     }
+                }
                 }
 
             },
@@ -110,11 +127,10 @@ function limpiarForm() {
     //Resetear el formulario
     $('#formLogin').trigger("reset");
 }
-function quien(){
-    last = enviaultimo();
-}
 function ultimo(){
-    return last;
+ var nombre = last;
+ var p = 1 + 2;
+    return nombre;
 }
 
 
