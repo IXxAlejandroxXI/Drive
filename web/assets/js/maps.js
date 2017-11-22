@@ -66,8 +66,6 @@ directionsDisplay.addListener('directions_changed', function () {
     costo(re);
 });
 deleteMarkers(); 
-var usuario = ultimo();
-var clientes = client(usuario);
 displayRoute(address, address2, directionsService,
         directionsDisplay);
 
@@ -116,9 +114,18 @@ function tiempoDuracion(result){
 }
  // Adds a marker to the map and push to the array.
       function addMarker(location) {
+          var icon = {
+    url: 'https://maps.google.com/mapfiles/kml/shapes/cabs.png', // url
+    scaledSize: new google.maps.Size(20, 20), // scaled size
+    origin: new google.maps.Point(0,0), // origin
+    anchor: new google.maps.Point(0, 0) // anchor
+};
         var marker = new google.maps.Marker({
           position: location,
-          map: map
+          map: map,
+          icon: icon
+                  //'https://www.google.com/search?rlz=1C1EKKP_enCR752CR752&biw=1366&bih=623&tbm=isch&sa=1&ei=VskVWtr1G46N_Qbaq7zYDw&q=car.png+maps&oq=car.png+maps&gs_l=psy-ab.3...1982.2948.0.3135.5.5.0.0.0.0.175.543.0j4.4.0....0...1c.1.64.psy-ab..1.2.322...0i30k1j0i8i30k1.0.WKMoFxDesFc#imgrc=YlErumTYTt9i7M:'
+         
         });
         markers.push(marker);
       }

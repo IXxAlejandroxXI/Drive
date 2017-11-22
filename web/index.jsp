@@ -67,7 +67,7 @@
                         
                         <form id="signup-form2" method="post" action="#">
                             
-                            ¿No tienes una cuenta? ¡Crea una en sencillos pasos y empieza a disfrutar de Drive!&nbsp &nbsp<a href="registro.html"><br> <input type="button" id="regis" value="Registrarse"/></a>
+                            ¿No tienes una cuenta? ¡Crea una en sencillos pasos y empieza a disfrutar de Drive!&nbsp &nbsp<a href="registroConductores.jsp"><br> <input type="button" id="regis" value="Registrarse"/></a>
                             <br>
                             ¡Únete a nuestro equipo de trabajo! <a href="registroConductores.html"><br><input type="button" id="unirse" value ="Unirme"/></a>
                         </form>

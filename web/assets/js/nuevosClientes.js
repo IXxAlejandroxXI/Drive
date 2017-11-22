@@ -1,32 +1,42 @@
-//******************************************************************************
-// // Funcion para generar el datetimepicker
-// Además de agregar los eventos a las respectivas etiquetas
-//******************************************************************************
-var last;
-$(function () {
-    
-    //agrega los eventos las capas necesarias
-    $("#ingreso").click(function () {
-        enviar();    
-    });
-    
-});
+var x;
+var y;
+var ult;
+var cliente;
+//$(function () {
+//    
+//    //agrega los eventos las capas necesarias
+//    $("#ingreso").click(function () {
+//        enviar();    
+//    });
+//    
+//});
 
 //******************************************************************************
 //******************************************************************************
 //El metodo enviar envia la información del login
 //******************************************************************************
 //******************************************************************************
-
-function enviar() {
+function enviar2() {
+   // var g = prueba();
+    pos();
     if (validar()) {
         //Se envia la información por ajax
+        console.log($("#usuario").val());
         $.ajax({
-            url: 'UsuariosServlet',
+            url: 'ClientesServlet',
             data: {
-                accion: "validarUsuario",
-                usuario: $("#email").val(),
-                password: $("#contra").val()
+                accion: "agregarCliente",
+                usuario: $("#usuario").val(),
+                contrasena: $("#contrasena").val(),
+                nombre: $("#nombre").val(),
+                apellidos: $("#apellidos").val(),
+                correo: $("#correo").val(),
+                fechaNacimiento: $("#dpFechaNacimiento").data('date'),
+                direccionx: x,
+                direcciony: y,
+                telefono: $("#telefono").val(),
+                ultimousuario: "",
+                fecha: new Date()
             },
             error: function () { //si existe un error en la respuesta del ajax
                 mostrarMensaje("alert alert-danger", "Se genero un error, contacte al administrador (Error del ajax)", "Error!");
@@ -35,53 +45,31 @@ function enviar() {
                 var respuestaTxt = data.substring(2);
                 var tipoRespuesta = data.substring(0, 2);
                 if (tipoRespuesta === "C~") {
-                    mostrarMensaje("alert alert-success", respuestaTxt, "Correcto!");
-                    //$("#myModalFormulario").modal("hide");
-                    
-                    //se redirecciona en JavaScript
-                    setTimeout(function(){
-                        window.location="Clientes.jsp";
+                    document.getElementById('ingreso3').innerHTML="Ingresado correctamente!";
+                            
+                            if (tipoRespuesta === "E~") {
                         
-                    }, 2000);
-                    
-                    
-                } else {
-                    if (tipoRespuesta === "A~") {
-                    mostrarMensaje("alert alert-success", respuestaTxt, "Correcto!");
-                    //$("#myModalFormulario").modal("hide");
-                    
-                    //se redirecciona en JavaScript
-                    setTimeout(function(){
-                        window.location="MantenimientoClientes.jsp";
-                        
-                    }, 2000);
-                    
-                    
-                }else{
-                    if (tipoRespuesta === "E~") {
-                        mostrarMensaje("alert alert-danger", respuestaTxt, "Error!");
                     } else {
-                        mostrarMensaje("alert alert-danger", "Se genero un error, contacte al administrador", "Error!");
+                        document.getElementById('ingreso3').innerHTML="Problema al ingresar!";
                     }
-                }
                 }
 
             },
-            dataType: "text",
             type: 'POST'
         });
     } else {
-        mostrarMensaje("alert alert-danger", "Debe digitar los campos del formulario", "Error!");
+       document.getElementById('ingreso3').innerHTML="Problema al ingresar!";
     }
 }
+
 
 function validar() {
     var validacion = true;
 
     //Elimina estilo de error en los css
     //notese que es sobre el grupo que contienen el input
-    $("#groupUsario").removeClass("has-error");
-    $("#groupPassword").removeClass("has-error");
+    //$("#groupUsario").removeClass("has-error");
+    //$("#groupPassword").removeClass("has-error");
 
     //valida cada uno de los campos del formulario
     //Nota: Solo si fueron digitados
@@ -124,11 +112,13 @@ function limpiarForm() {
     //Resetear el formulario
     $('#formLogin').trigger("reset");
 }
-function ultimo(){
- var nombre = last;
- var p = 1 + 2;
-    return nombre;
+
+function pos(){
+    x = posicionx();
+    
+    y = posiciony();
 }
-
-
-
+function client(usuario){
+    consultarClienteByID(usuario);
+    return cliente;
+}
