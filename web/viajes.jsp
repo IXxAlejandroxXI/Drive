@@ -29,7 +29,9 @@
         </p>
         </div>
         <div id="map-canvas"></div>
-      <p>Total Distance: <span id="total"></span></p>
+      <p>Distancia Total: <span id="total"></span></p>
+      <p>Duracion del viaje: <span id="distancia"></span></p>
+      <p>Costo del viaje: <span id="costo"></span></p>
     </div>
         <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
         <script src="assets/js/main.js"></script>

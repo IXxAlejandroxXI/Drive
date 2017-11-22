@@ -83,7 +83,15 @@ public class ViajesServlet extends HttpServlet {
                     json = new Gson().toJson(v);
                     out.print(json);
                     break;
+                case "guardarViaje":
+                    //se consulta la persona por ID
+                    v = vBL.findById(Integer.parseInt(request.getParameter("idViaje")));
                     
+                    //se pasa la informacion del objeto a formato JSON
+                    json = new Gson().toJson(v);
+                    out.print(json);
+                    break;
+                        
                     
                 default:
                     out.print("E~No se indico la acción que se desea realizarze");

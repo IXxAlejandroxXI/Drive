@@ -39,6 +39,9 @@ public class ViajesTest {
         vi.setFechaMod(new Date());
         vi.setPuntoFinalX(2.3f);
         vi.setPuntoFinalY(2.1f);
+        vi.setNumero(1);
+        
+        
 
         viDAO.save(vi);
 

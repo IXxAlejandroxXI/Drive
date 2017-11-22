@@ -61,7 +61,9 @@ var directionsDisplay = new google.maps.DirectionsRenderer({
     map: map
 });
 directionsDisplay.addListener('directions_changed', function () {
-    computeTotalDistance(directionsDisplay.getDirections());
+    var re=computeTotalDistance(directionsDisplay.getDirections());
+    tiempoDuracion(re);
+    costo(re);
 });
 deleteMarkers(); 
 
@@ -100,6 +102,16 @@ function computeTotalDistance(result) {
     }
     total = total / 1000;
     document.getElementById('total').innerHTML = total + ' km';
+    return total;
+}
+function costo(result){
+    document.getElementById('costo').innerHTML = 400*result + '₡';
+    return 400*result;
+}
+function tiempoDuracion(result){
+    var def = result*2.5/60;
+    var w=def - Math.trunc(def); 
+    document.getElementById('distancia').innerHTML = Math.trunc(def) + ' horas'+ w.toFixed(2) * 100+ 'minutos';
 }
  // Adds a marker to the map and push to the array.
       function addMarker(location) {
@@ -147,5 +159,46 @@ function computeTotalDistance(result) {
       function posiciony(){
           return 2;
       }
+function enviar() {
+   // var g = prueba();
+ 
+        $.ajax({
+            url: 'ViajesServlet',
+            data: {
+                accion: "guardarViaje",
+                usuario: $("#usuario").val(),
+                contrasena: $("#contrasena").val(),
+                nombre: $("#nombre").val(),
+                apellidos: $("#apellidos").val(),
+                correo: $("#correo").val(),
+                fechaNacimiento: $("#dpFechaNacimiento").data('date'),
+                direccionx: x,
+                direcciony: y,
+                telefono: $("#telefono").val(),
+                ultimousuario: "",
+                fecha: new Date()
+            },
+            error: function () { //si existe un error en la respuesta del ajax
+                mostrarMensaje("alert alert-danger", "Se genero un error, contacte al administrador (Error del ajax)", "Error!");
+            },
+            success: function (data) { //si todo esta correcto en la respuesta del ajax, la respuesta queda en el data
+                var respuestaTxt = data.substring(2);
+                var tipoRespuesta = data.substring(0, 2);
+                if (tipoRespuesta === "C~") {
+                    mostrarMensaje("alert alert-success", respuestaTxt, "Correcto!");
+                    $("#myModalFormulario").modal("hide");
+                    consultarClientes();
+                } else {
+                    if (tipoRespuesta === "E~") {
+                        mostrarMensaje("alert alert-danger", respuestaTxt, "Error!");
+                    } else {
+                        mostrarMensaje("alert alert-danger", "Se genero un error, contacte al administrador", "Error!");
+                    }
+                }
 
+            },
+            type: 'POST'
+        });
+  
+}
 //        }
